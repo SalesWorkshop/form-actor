@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#5a0b17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>שאלון שחקן · סדנת מכירות ושיווק</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%237a1222'/%3E%3Cg fill='none' stroke='%23f1d77a' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M2.5 4.5c3-1.2 6-1.2 9 0V10c0 3.3-2 6-4.5 6S2.5 13.3 2.5 10z'/%3E%3Cpath d='M4.8 11.3q2.2 2.1 4.4 0'/%3E%3Cpath d='M12.5 8.5c3-1.2 6-1.2 9 0V14c0 3.3-2 6-4.5 6s-4.5-2.7-4.5-6z'/%3E%3Cpath d='M14.8 17q2.2-2 4.4 0'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Suez+One&display=swap" rel="stylesheet">
+<style>
+:root{
+  --velvet:#7a1222; --velvet-d:#4e0a16; --velvet-dd:#2e0610;
+  --gold:#c9a227; --gold-l:#f1d77a; --gold-d:#9a7a17;
+  --stage:#1a1117; --paper:#fffaf1; --paper-2:#f6eedc; --line:#e7dac0; --field:#fffdf8; --field-line:#d8c9ab;
+  --ink:#2a1d22; --ink-2:#5b4a50; --muted:#8a7a7f;
+  --ok:#2e7d4f; --ok-soft:#e3f2e8; --warn:#a15e00; --warn-soft:#fbefd9; --info:#2b5ea7; --info-soft:#e7eef9; --err:#b42318;
+  --display:'Suez One',"Noto Sans Hebrew","Arial Hebrew",Georgia,serif;
+  --r:16px; --safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box}
+html{background:var(--stage)}
+body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans Hebrew","Arial Hebrew",Arial,sans-serif;font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%;
+  background:radial-gradient(ellipse 90% 55% at 50% 0,rgba(255,210,130,.17),transparent 70%),radial-gradient(ellipse 60% 30% at 50% 100%,rgba(122,18,34,.25),transparent 70%),var(--stage);
+  background-attachment:fixed;min-height:100vh;padding-bottom:calc(88px + var(--safe-b))}
+button{font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ico{flex:0 0 auto;vertical-align:middle}
+
+/* ---------- curtain top bar ---------- */
+.topbar{position:sticky;top:0;z-index:30;color:#fff3d6;
+  background:repeating-linear-gradient(90deg,rgba(0,0,0,.2) 0 6px,rgba(255,255,255,.05) 6px 14px,rgba(0,0,0,.2) 14px 22px),linear-gradient(#5a0b17,#7a1222)}
+.topbar::after{content:"";position:absolute;left:0;right:0;top:100%;height:12px;pointer-events:none;
+  background:radial-gradient(circle at 50% 0,#7a1222 0 8.5px,var(--gold) 9px 10.5px,transparent 11px) 0 0/24px 12px repeat-x;filter:drop-shadow(0 3px 3px rgba(0,0,0,.35))}
+.topbar-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px 2px;max-width:760px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-ico{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-l);background:radial-gradient(circle at 50% 30%,#3a0812,#250510);box-shadow:0 0 0 1.5px var(--gold),0 0 14px rgba(241,215,122,.3)}
+.brand-t{font-family:var(--display);font-size:18px;line-height:1.1;color:#fff3d6}
+.brand-t small{display:block;font-family:-apple-system,"Segoe UI",Arial,sans-serif;font-size:12px;opacity:.75;margin-top:2px}
+.save-ind{font-size:12px;opacity:.8;white-space:nowrap;display:flex;align-items:center;gap:4px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:10px 10px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch;max-width:760px;margin:0 auto}
+.tabs::-webkit-scrollbar{display:none}
+.tab{--n:5px;flex:0 0 auto;display:flex;align-items:center;gap:6px;border:0;background:rgba(255,236,200,.13);color:#fff1d2;border-radius:5px;padding:7px 15px;font-size:14px;white-space:nowrap;
+  -webkit-mask:radial-gradient(circle var(--n) at 0 50%,#0000 96%,#000) 0 0/51% 100% no-repeat,radial-gradient(circle var(--n) at 100% 50%,#0000 96%,#000) 100% 0/51% 100% no-repeat;
+          mask:radial-gradient(circle var(--n) at 0 50%,#0000 96%,#000) 0 0/51% 100% no-repeat,radial-gradient(circle var(--n) at 100% 50%,#0000 96%,#000) 100% 0/51% 100% no-repeat}
+.tab.active{background:linear-gradient(#f6df8e,#c9a227);color:#3a160c;font-weight:700}
+.dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;background:#9d8e93;box-shadow:0 0 0 1.5px rgba(0,0,0,.15)}
+[data-status="partial"] .dot{background:#f0a531}
+[data-status="complete"] .dot{background:#ffe27a;box-shadow:0 0 6px #ffe27a}
+[data-status="uploaded"] .dot{background:#45c27c;box-shadow:0 0 6px #45c27c}
+
+/* ---------- layout ---------- */
+main{max-width:760px;margin:0 auto;padding:24px 12px 14px}
+section[data-tab]{display:none}
+section[data-tab].shown{display:block;animation:rise .25s ease}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:14px;box-shadow:0 8px 22px rgba(0,0,0,.28)}
+.card-title{font-family:var(--display);font-weight:400;font-size:19px;color:var(--velvet);margin:0 0 12px;display:flex;align-items:center;gap:8px}
+.card-title .ico{color:var(--gold-d)}
+.hint{font-size:13px;color:var(--muted);margin:4px 0 0}
+.banner{border-radius:12px;padding:10px 12px;font-size:14px;margin-bottom:14px;display:flex;gap:8px;align-items:flex-start}
+.banner.warn{background:var(--warn-soft);color:#6e4300}
+.banner.info{background:var(--info-soft);color:#1d4278}
+
+/* ---------- fields ---------- */
+.fld{display:block;margin-bottom:14px}
+.fld>span,.fld-label{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--ink-2);margin-bottom:6px}
+.fld>span .ico{color:var(--gold-d)}
+.inp{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--field);border:1px solid var(--field-line);border-radius:11px;padding:11px 12px;outline:none;-webkit-appearance:none;appearance:none}
+.inp:focus{border-color:var(--velvet);background:#fff;box-shadow:0 0 0 3px rgba(201,162,39,.28)}
+select.inp{background-image:linear-gradient(45deg,transparent 50%,#7a6a5a 50%),linear-gradient(135deg,#7a6a5a 50%,transparent 50%);background-position:16px 50%,11px 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-left:30px}
+select.inp:disabled{opacity:.65}
+textarea.inp{resize:none;line-height:1.6;min-height:72px;overflow:hidden;
+  background-image:repeating-linear-gradient(to bottom,transparent 0 calc(1.6em - 1px),rgba(122,18,34,.07) calc(1.6em - 1px) 1.6em);background-attachment:local;background-position:0 11px}
+.sel-row{display:flex;gap:8px}
+.sel-row .inp{flex:1;min-width:0}
+.icon-btn{flex:0 0 46px;border:1px solid var(--field-line);background:var(--field);border-radius:11px;color:var(--velvet);display:flex;align-items:center;justify-content:center}
+.linkbtn{background:none;border:0;padding:6px 0 0;color:var(--info);font-size:14px;text-decoration:underline}
+.cand-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px;font-size:13px;color:var(--ink-2)}
+.cand-chips>span{display:flex;align-items:center;gap:5px;width:100%}
+.cand-chips>span .ico{color:var(--gold-d)}
+.cand-chips b{background:var(--paper-2);border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:14px;color:var(--velvet)}
+.cand-chips.empty{color:var(--warn)}
+.srv{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.srv i{width:8px;height:8px;border-radius:50%;display:inline-block;background:#9aa1b2}
+.srv.ok i{background:var(--ok)} .srv.err i{background:var(--err)} .srv.warn i{background:var(--warn)}
+
+/* ---------- stage map (details) ---------- */
+.stage-card{background:#140c11;border-color:#3d2731;padding:0;overflow:hidden;color:#f3e6cf}
+.stage-title{display:flex;align-items:center;gap:8px;padding:12px 14px 8px;font-family:var(--display);font-size:18px;color:var(--gold-l)}
+.stage-svg{display:block;width:100%;height:auto}
+.stage-svg [data-go]{cursor:pointer}
+.stage-cap{padding:10px 14px 12px;font-size:13px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;border-top:1px solid #2d1c24}
+.stage-cap b{color:var(--gold-l);font-size:14px}
+.stage-cap .lg{display:flex;align-items:center;gap:5px;color:#cdbfae}
+.stage-cap .lg i{width:9px;height:9px;border-radius:50%;display:inline-block}
+
+/* ---------- programme list ---------- */
+.ex-row{display:flex;align-items:center;gap:12px;width:100%;text-align:right;background:none;border:0;border-top:1px dashed var(--line);padding:12px 2px;color:var(--ink)}
+.ex-row:first-child{border-top:0}
+.ex-ico{flex:0 0 44px;height:44px;border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center;color:var(--gold-l);background:radial-gradient(circle at 50% 30%,#8e1a2c,#4e0a16);box-shadow:inset 0 0 0 1.5px var(--gold)}
+.ex-ico b{position:absolute;bottom:-3px;left:-3px;width:19px;height:19px;border-radius:50%;background:var(--gold-l);color:var(--velvet-d);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px var(--paper)}
+.ex-main{flex:1;min-width:0}
+.ex-name{font-weight:700;font-size:15px}
+.ex-sub{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{flex:0 0 auto;font-size:12px;font-weight:600;border-radius:999px;padding:3px 9px;background:#efe7d8;color:#6e6066}
+.pill[data-status="partial"]{background:var(--warn-soft);color:var(--warn)}
+.pill[data-status="complete"]{background:#fbf0c9;color:#7a5a00}
+.pill[data-status="uploaded"]{background:var(--ok-soft);color:var(--ok)}
+
+/* ---------- playbill header (sheet) ---------- */
+.playbill{border-radius:18px;margin-bottom:14px;text-align:center;color:#fff3d6;overflow:hidden;
+  background:radial-gradient(ellipse at 50% -25%,rgba(255,220,150,.38),transparent 62%),linear-gradient(#741121,#45081a);
+  box-shadow:inset 0 0 0 2px var(--gold),inset 0 0 0 6px #45081a,inset 0 0 0 7px rgba(201,162,39,.55),0 10px 26px rgba(0,0,0,.4)}
+.bulbs{height:14px;margin:9px 12px 0;background:radial-gradient(circle,#fff8d8 0 2.3px,#f1c94a 2.7px 3.5px,transparent 4px) 0 50%/18px 14px repeat-x;filter:drop-shadow(0 0 3px rgba(255,214,102,.8))}
+.bulbs.b{margin:0 12px 9px}
+.pb-body{padding:4px 18px 8px}
+.pb-icon{width:62px;height:62px;margin:6px auto 8px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-l);
+  background:radial-gradient(circle at 50% 30%,#3a0812,#22040d);box-shadow:0 0 0 2px var(--gold),0 0 22px rgba(241,215,122,.35)}
+.pb-kicker{font-size:12px;letter-spacing:1px;color:var(--gold-l);opacity:.9}
+.pb-title{font-family:var(--display);font-size:17px;line-height:1.35;margin-top:2px}
+.pb-title span{display:block;color:var(--gold-l);font-size:25px;text-shadow:0 2px 10px rgba(0,0,0,.4)}
+
+/* ---------- cast list ---------- */
+.cast-head{font-family:var(--display);font-size:17px;color:var(--velvet);display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.cast-head .ico{color:var(--gold-d)}
+.cast-row{display:flex;align-items:baseline;gap:6px;font-size:15px;padding:3px 0}
+.cast-row .k{color:var(--ink-2)}
+.cast-row i{flex:1;min-width:14px;border-bottom:2px dotted #cbb991;transform:translateY(-4px)}
+.cast-row b{font-weight:700;max-width:62%;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cast-row b.role{color:var(--velvet)}
+.cast-sep{height:1px;background:var(--line);margin:12px 0 14px}
+
+/* ---------- questions ---------- */
+.note{font-size:14px;color:var(--ink-2);background:var(--paper-2);border-right:3px solid var(--velvet);border-radius:8px;padding:10px 12px;margin:0 0 14px;display:flex;gap:8px}
+.note .ico{color:var(--velvet);margin-top:2px}
+.lead{font-size:15px;margin:0 0 12px;color:var(--ink-2)}
+.lead strong{color:var(--ink)}
+.q{margin-bottom:16px}
+.q-label{font-size:15px;margin-bottom:6px;color:var(--ink)}
+.q-label strong{font-weight:700}
+.q-label .h{color:var(--ink-2)}
+.q-label .h2{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+
+/* ---------- rating scale ---------- */
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:3px 12px;font-size:12px;color:var(--ink-2);background:var(--paper-2);border-radius:10px;padding:8px 10px;margin:0 0 6px}
+.legend b{display:inline-block;min-width:14px;color:var(--velvet)}
+.dim{padding:12px 0 10px;border-top:1px solid var(--line)}
+.dim-head{display:flex;align-items:baseline;gap:6px;margin-bottom:8px;font-size:15px}
+.dim-num{color:var(--gold-d);font-weight:700;flex:0 0 auto}
+.dim-label{flex:1}
+.dim-val{flex:0 0 auto;font-size:12px;font-weight:600;color:var(--velvet);background:#f7e8cc;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.dim-val:empty{display:none}
+.scale{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.scale button{min-height:44px;border:1px solid var(--field-line);background:var(--field);border-radius:11px;color:var(--ink-2);padding:4px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:transform .12s}
+.scale button:active{transform:scale(.94)}
+.scale button .n{font-size:17px;font-weight:700;line-height:1}
+.scale button .l{font-size:10px;line-height:1.15;color:var(--muted)}
+.scale button.on{background:radial-gradient(circle at 50% 12%,#c02c44,#6e0f1e 75%);border-color:#6e0f1e;color:#fff3d0;box-shadow:inset 0 0 0 1px var(--gold-l),0 3px 10px rgba(122,18,34,.35)}
+.scale button.on .l{color:#f6dcb0}
+.scale.labeled button{min-height:72px}
+.anchors{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px;padding:0 2px}
+
+/* rating profile chart */
+.profile{margin-top:12px;background:var(--paper-2);border-radius:12px;padding:10px 12px 8px}
+.profile-h{font-size:13px;font-weight:600;color:var(--ink-2);display:flex;gap:6px;align-items:center;margin-bottom:8px}
+.profile-h .ico{color:var(--gold-d)}
+.bars{display:flex;align-items:flex-end;gap:6px;height:84px;border-bottom:2px solid #cdb98f;position:relative}
+.bars::before{content:"";position:absolute;left:0;right:0;bottom:41%;border-top:1px dashed rgba(122,18,34,.25)}
+.bar{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;position:relative}
+.bar i{display:block;border-radius:6px 6px 0 0;background:linear-gradient(#e4b93a,#7a1222);transition:height .3s ease}
+.bar em{font-style:normal;font-size:11px;font-weight:700;color:var(--velvet);text-align:center;line-height:1.3}
+.bar.empty i{height:3px!important;background:#d6c6a4}
+.bar-n{display:flex;gap:6px;margin-top:3px}
+.bar-n span{flex:1;text-align:center;font-size:11px;color:var(--muted)}
+
+/* ---------- status line ---------- */
+.missing{font-size:13px;color:var(--warn);background:var(--warn-soft);border-radius:12px;padding:9px 12px;margin-top:2px;display:flex;align-items:center;gap:8px}
+.missing.okmsg{color:var(--ok);background:var(--ok-soft)}
+
+/* ---------- buttons, bottom bar, toast ---------- */
+.btn{font-size:15px;font-weight:600;border-radius:12px;padding:12px 14px;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.btn-primary{background:linear-gradient(#f6dd85,#c9a227);color:#3a160c;box-shadow:inset 0 -2px 0 rgba(0,0,0,.15),0 0 16px rgba(241,215,122,.25)}
+.btn-primary:disabled{opacity:.6}
+.btn-ghost{background:#fff;border-color:var(--field-line);color:var(--ink)}
+.btn-ghost .ico{color:var(--velvet)}
+.btn-text{background:none;color:var(--err);font-weight:500}
+.block{display:flex;width:100%;margin-top:8px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.bottombar{position:fixed;bottom:0;left:0;right:0;z-index:30;background:rgba(22,13,18,.97);border-top:1px solid #4a3222;box-shadow:0 -8px 20px rgba(0,0,0,.35);padding:10px 12px calc(10px + var(--safe-b))}
+.bottombar-in{display:flex;gap:8px;max-width:760px;margin:0 auto}
+.bottombar .btn{flex:1;padding:12px 6px}
+.bottombar .btn-primary{flex:1.4}
+.bottombar .btn-ghost{background:transparent;color:#f6e7c8;border-color:rgba(241,215,122,.38)}
+.toast{position:fixed;left:12px;right:12px;bottom:calc(82px + var(--safe-b));z-index:40;max-width:560px;margin:0 auto;background:var(--velvet-d);color:#fff3d6;border-radius:12px;padding:12px 14px;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.4);opacity:0;transform:translateY(10px);transition:.2s;pointer-events:none;border:1px solid rgba(241,215,122,.35)}
+.toast.show{opacity:1;transform:none}
+.toast.ok{background:#1f5f3c} .toast.err{background:#8f1d14} .toast.warn{background:#6b4100}
+.ver{text-align:center;font-size:12px;color:#bba98f;margin:10px 0 0;display:flex;align-items:center;justify-content:center;gap:6px}
+.ver .ico{color:var(--gold)}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(58,22,12,.35);border-top-color:#3a160c;border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+/* ---------- daily-code gate ---------- */
+.gate{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:24px;
+  background:repeating-linear-gradient(90deg,rgba(0,0,0,.24) 0 9px,rgba(255,255,255,.05) 9px 20px,rgba(0,0,0,.24) 20px 30px) left top/16% 100% no-repeat,
+             repeating-linear-gradient(90deg,rgba(0,0,0,.24) 0 9px,rgba(255,255,255,.05) 9px 20px,rgba(0,0,0,.24) 20px 30px) right top/16% 100% no-repeat,
+             linear-gradient(90deg,#6e0f1e 0 16%,transparent 16% 84%,#6e0f1e 84%),
+             radial-gradient(ellipse 70% 60% at 50% 20%,rgba(255,214,140,.25),transparent 70%),#1a1117}
+.gate[hidden]{display:none}
+body.gated{overflow:hidden}
+body.gated .bottombar,body.gated .topbar,body.gated main{visibility:hidden}
+.gate-box{width:100%;max-width:340px;background:var(--paper);border-radius:20px;padding:26px 22px 20px;text-align:center;
+  box-shadow:0 0 0 2px var(--gold),0 0 0 7px #45081a,0 0 0 8px rgba(201,162,39,.55),0 18px 50px rgba(0,0,0,.55)}
+.gate-ico{width:70px;height:70px;margin:0 auto 10px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-l);
+  background:radial-gradient(circle at 50% 30%,#3a0812,#22040d);box-shadow:0 0 0 2px var(--gold),0 0 22px rgba(241,215,122,.35)}
+.gate-box h1{font-family:var(--display);font-weight:400;color:var(--velvet);font-size:26px;margin:0}
+.gate-sub{margin:2px 0 18px;color:var(--ink-2);font-size:14px}
+.gate-box label{display:block;text-align:right;font-weight:600;font-size:14px;color:var(--ink-2);margin-bottom:6px}
+.gate-box .inp{text-align:center;font-size:24px;letter-spacing:6px;font-weight:700}
+.gate-msg{min-height:20px;margin-top:10px;font-size:14px;color:var(--ink-2)}
+.gate-msg.warn{color:var(--warn)} .gate-msg.err{color:var(--err);font-weight:600}
+.gate-hint{font-size:12px;color:var(--muted);margin:8px 0 0}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-row">
+    <div class="brand"><span class="brand-ico" id="brandIco"></span><div class="brand-t">שאלון שחקן<small>סדנת הכשרה למנהלי מכירות ושיווק</small></div></div>
+    <div class="save-ind" id="saveInd"></div>
+  </div>
+  <nav class="tabs" id="tabs" aria-label="ניווט בין התרגילים"></nav>
+</header>
+
+<main id="main"></main>
+
+<footer class="bottombar">
+  <div class="bottombar-in">
+    <button class="btn btn-ghost" id="btnPrev">→ הקודם</button>
+    <button class="btn btn-primary" id="btnUpload"></button>
+    <button class="btn btn-ghost" id="btnNext">הבא ←</button>
+  </div>
+</footer>
+
+<div class="gate" id="gate" hidden>
+  <div class="gate-box">
+    <div class="gate-ico" id="gateIco"></div>
+    <h1>שאלון שחקן</h1>
+    <p class="gate-sub">סדנת הכשרה למנהלי מכירות ושיווק</p>
+    <label for="gateCode">קוד הכניסה היומי</label>
+    <input id="gateCode" class="inp" type="text" inputmode="numeric" autocomplete="off" maxlength="12" dir="ltr">
+    <button class="btn btn-primary block" id="gateGo">כניסה לבמה</button>
+    <div class="gate-msg" id="gateMsg" role="alert"></div>
+    <p class="gate-hint">את הקוד מקבלים מצוות המרכז. הוא מתחלף כל יום.</p>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<input type="file" id="fileImport" accept=".json,application/json" hidden>
+<datalist id="candNames"></datalist>
+
+<script>
+/* =====================================================================
+   הגדרות שרת – Supabase של Sales Workshop
+   ---------------------------------------------------------------------
+   • מרכזי ההכשרה ושמות המועמדים נקראים מהטבלה files של Sales Workshop
+     (שורות CENTER_ שהמנהל יוצר באפליקציה: centerName + trainees).
+   • השאלונים עולים לטבלה actor_evaluations דרך הפונקציה actorq_submit,
+     שבודקת את קוד הכניסה היומי. הקמה: קובץ SUPABASE-SETUP-v1.3.txt
+     בתיקיית Sales Workshop, חלק 1.
+   • נוסחת הקוד היומי שמורה רק בשרת (לא בקובץ הזה).
+   • כל עוד supabaseUrl ריק – הטופס עובד במצב ידני, בלי שרת ובלי קוד.
+   ===================================================================== */
+const CONFIG_DEFAULTS = {
+  supabaseUrl: 'https://mueshmjryooglltwdnlb.supabase.co',
+  supabaseAnonKey: 'sb_publishable_AZ-PljyaePr14MvOHYKczA_7rL3c2Zo',   // מפתח ציבורי (כמו באפליקציה)
+
+  centersTable: 'files',
+  centerPrefixes: ['CENTER_', 'sw_CENTER_'],   // מרכזים של Sales Workshop (עם/בלי קידומת sw_)
+  centersLimit: 60,
+
+  submitRpc: 'actorq_submit',    // העלאת שאלונים (בודקת את הקוד היומי)
+  codeRpc: 'actorq_code_ok',     // אימות הקוד היומי במסך הכניסה
+  requestTimeoutMs: 15000
+};
+</script>
+
+<script>
+(function () {
+'use strict';
+
+const APP_VERSION = '1.2.0';
+const LS_KEY = 'actorq.v1';
+
+/* ---------- config ---------- */
+function deepMerge(a, b) {
+  const out = Array.isArray(a) ? a.slice() : Object.assign({}, a);
+  if (!b || typeof b !== 'object') return out;
+  for (const k of Object.keys(b)) {
+    out[k] = (b[k] && typeof b[k] === 'object' && !Array.isArray(b[k]) && a[k] && typeof a[k] === 'object')
+      ? deepMerge(a[k], b[k]) : b[k];
+  }
+  return out;
+}
+const CONFIG = deepMerge(CONFIG_DEFAULTS, window.ACTORQ_CONFIG || {});
+const SERVER = !!(CONFIG.supabaseUrl && CONFIG.supabaseAnonKey);
+
+/* ---------- icons (inline SVG, 24×24 line) ---------- */
+const ICON = {
+  masks: '<path d="M2.5 4.5c3-1.2 6-1.2 9 0V10c0 3.3-2 6-4.5 6S2.5 13.3 2.5 10z"/><path d="M4.6 8.4q1-1 2 0M7.9 8.4q1-1 2 0M4.8 11.3q2.2 2.1 4.4 0"/><path d="M12.5 8.5c3-1.2 6-1.2 9 0V14c0 3.3-2 6-4.5 6s-4.5-2.7-4.5-6z"/><path d="M14.6 12.1q1 .9 2 0M17.9 12.1q1 .9 2 0M14.8 17q2.2-2 4.4 0"/>',
+  phone: '<path d="M5 3.5h3.2l1.6 4.2-2.1 1.4a11.5 11.5 0 0 0 7.2 7.2l1.4-2.1 4.2 1.6v3.2a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3 5.7a2 2 0 0 1 2-2.2z"/><path d="M14.5 3.5a6 6 0 0 1 6 6M14.5 7a2.6 2.6 0 0 1 2.5 2.5"/>',
+  hardhat: '<path d="M2.5 18.5h19"/><path d="M4 18.5V16a8 8 0 0 1 16 0v2.5"/><path d="M10 8.3V5.5h4v2.8"/><path d="M8 9.6v4M16 9.6v4"/>',
+  yoram: '<circle cx="12" cy="7.5" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/><path d="M12 13.5l-1.3 1.8 1.3 4.2 1.3-4.2z"/>',
+  aharon: '<circle cx="12" cy="9.4" r="3.6"/><path d="M6.6 5.8h10.8M8.6 5.8l.9-2.9h5l.9 2.9"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/>',
+  megaphone: '<path d="M3 10.2v3.6l3 .6 9.5 4.6V5L6 9.6z"/><path d="M6 9.6v4.8"/><path d="M18.5 9a3.2 3.2 0 0 1 0 6"/><path d="M7.2 14.6l1.6 5h2.6l-1.1-4.4"/>',
+  ticket: '<path d="M3 7.5a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2.2a2.3 2.3 0 0 0 0 4.6v2.2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2.2a2.3 2.3 0 0 0 0-4.6z"/><path d="M9 6.5v11" stroke-dasharray="1.6 1.9"/>',
+  script: '<path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 11h7M9 14h7M9 17h4"/>',
+  spotlight: '<path d="M3.5 6.5l5-3.3 2.4 3.8-5 3.2z"/><path d="M6.2 9.9 4.8 13M10.9 7l9.6 7.8M8.9 10.4l7.3 9.3"/><path d="M15.8 20c2 .5 4-.3 5-2.2"/>',
+  theater: '<path d="M3 9 12 3l9 6M3 9h18"/><path d="M5 9v10M9.7 9v10M14.3 9v10M19 9v10M3 21h18"/>',
+  calendar: '<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/>',
+  star: '<path d="M12 3.2l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 17l-5.4 2.9 1.1-6.1-4.5-4.2 6.1-.8z"/>',
+  upload: '<path d="M12 15.5V4M7 9l5-5 5 5M4.5 20h15"/>',
+  save: '<path d="M5 3.5h11l3.5 3.5v13.5H5z"/><path d="M8 3.5v5h7v-5M8 20.5V14h8v6.5"/>',
+  share: '<circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="M8.2 10.8l7.6-4.1M8.2 13.2l7.6 4.1"/>',
+  folder: '<path d="M3 6.5h6l2 2h10v10.5H3z"/>',
+  refresh: '<path d="M20 11a8 8 0 0 0-14.3-4.6L4 8.5M4 4v4.5h4.5M4 13a8 8 0 0 0 14.3 4.6L20 15.5M20 20v-4.5h-4.5"/>',
+  check: '<path d="M4.5 12.5l4.5 4.5 10.5-10.5"/>',
+  alert: '<path d="M12 3.5 2.5 20h19z"/><path d="M12 10v4.5M12 17.3v.2"/>',
+  chart: '<path d="M4 20h16"/><path d="M7 20v-6M11 20V8M15 20v-9M19 20V5"/>',
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/>'
+};
+function icon(name, size, sw) {
+  return `<svg class="ico" viewBox="0 0 24 24" width="${size || 20}" height="${size || 20}" fill="none" stroke="currentColor" stroke-width="${sw || 1.7}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[name] || ''}</svg>`;
+}
+
+/* ---------- questionnaire content (from the printed forms) ---------- */
+const SCALE = [
+  [7, 'גבוה ביותר'], [6, 'גבוה'], [5, 'מעט למעלה מבינוני'], [4, 'בינוני'],
+  [3, 'מעט למטה מבינוני'], [2, 'נמוך'], [1, 'נמוך ביותר']
+];
+const SCALE_LABEL = Object.fromEntries(SCALE);
+
+const DIM = {
+  first_contact:  'יצירת קשר ראשוני',
+  confidence:     'ביטחון עצמי ודומיננטיות',
+  empathy:        'הבעת אמפתיה',
+  persuasion:     'כושר שכנוע',
+  acting:         'כושר משחק',
+  personal_level: 'רמה אישית',
+  sophistication: 'תחכום וערמומיות',
+  initiative:     'יוזמה ותכליתיות',
+  liking:         'עד כמה המועמד הצליח לעורר בך חיבה?',
+  trust:          'עד כמה המועמד הצליח לעורר בך אמון?'
+};
+
+const RATING_INTRO = 'בהסתמך על <strong>תחושתך האישית</strong> במפגש עם המועמד, אנא הערך את תפקודו בתרגיל על פי הממדים הבאים:';
+
+function notableQ(rows, tail) {
+  return {
+    t: 'text', id: 'notable', rows: rows,
+    label: 'נא ציין כל דבר יוצא דופן שבלט בתפקודו של המועמד בתרגיל',
+    after: '(לחיוב או לשלילה).',
+    hint: 'ניתן להתייחס לכל היבט שנראה לך רלוונטי, וכן לגורמים שלדעתך השפיעו על תפקודו של המועמד בתרגיל' + tail
+  };
+}
+const STD_DIMS = ['first_contact', 'confidence', 'persuasion', 'empathy', 'acting', 'sophistication', 'initiative', 'liking', 'trust'];
+
+const EXERCISES = [
+  {
+    key: 'strong_number', order: 1, title: 'מספר חזק', tab: 'מספר חזק', icon: 'phone',
+    character: { fixed: false },
+    blocks: [
+      { t: 'note', text: 'הקפד לפרט בכל נושא הן את התנהגות המועמד והן את התייחסויותיך אליו. זכור, בין השאר יאפשר פירוט זה לאמוד את מידת הדיוק בדיווחו של המועמד לאחר המפגש עמך.' },
+      { t: 'lead', text: 'נא תאר בפירוט את מהלך הפגישה עם המועמד, לפי מהלך העניינים:' },
+      { t: 'text', id: 'opening', rows: 5, label: 'יצירת קשר ראשוני', after: '(כיצד יצר את הקשר, ואיך פיתח את הקשר הראשוני לשיחה):' },
+      { t: 'text', id: 'conversation', rows: 5, label: 'מהלך השיחה', after: '(כיצד התגלגלה השיחה, כיצד המועמד ניווט אותה ועד כמה היה דומיננטי):' },
+      { t: 'text', id: 'closing', rows: 5, label: 'סיכום ופרידה', after: '(כיצד ניתק המועמד את הקשר ונפרד? האם יצר תשתית לפגישת המשך?):' },
+      { t: 'ratings', dims: ['first_contact', 'confidence', 'persuasion', 'acting', 'personal_level', 'sophistication', 'trust', 'liking'] },
+      { t: 'text', id: 'relationship', rows: 2, label: 'נא תאר את סוג הקשר שיצר איתך המועמד בתרגיל', after: "(נעים, נוקשה, סמכותי וכו'):" },
+      notableQ(3, '.'),
+      { t: 'overall', id: 'overall', label: 'ציון מסכם לתרגיל:' }
+    ]
+  },
+  {
+    key: 'plastics_engineer', order: 2, title: 'מהנדס פלסטיקה', tab: 'מהנדס פלסטיקה', icon: 'hardhat',
+    character: { fixed: false },
+    blocks: [
+      { t: 'ratings', dims: ['first_contact', 'confidence', 'empathy', 'persuasion', 'acting', 'sophistication', 'initiative', 'liking', 'trust'] },
+      notableQ(5, ' ועל הרושם שיצר.')
+    ]
+  },
+  {
+    key: 'etzioni_yoram', order: 3, title: 'משפחת עציוני', tab: 'יורם עציוני', icon: 'yoram',
+    character: { fixed: true, name: 'יורם עציוני' },
+    blocks: [ { t: 'ratings', dims: STD_DIMS }, notableQ(3, ' ועל הרושם שיצר.') ]
+  },
+  {
+    key: 'etzioni_aharon', order: 4, title: 'משפחת עציוני', tab: 'אהרון עציוני', icon: 'aharon',
+    character: { fixed: true, name: 'אהרון עציוני' },
+    blocks: [ { t: 'ratings', dims: STD_DIMS }, notableQ(3, ' ועל הרושם שיצר.') ]
+  },
+  {
+    key: 'sales_agents_recruitment', order: 5, title: 'גיוס סוכני מכירות', tab: 'גיוס סוכני מכירות', icon: 'megaphone',
+    character: { fixed: true, name: 'ניב' },
+    blocks: [ { t: 'ratings', dims: STD_DIMS }, notableQ(3, ' ועל הרושם שיצר.') ]
+  }
+];
+const EX = Object.fromEntries(EXERCISES.map(e => [e.key, e]));
+const TAB_ORDER = ['details'].concat(EXERCISES.map(e => e.key));
+
+function exDims(ex)  { const b = ex.blocks.find(x => x.t === 'ratings'); return b ? b.dims : []; }
+function exTexts(ex) { return ex.blocks.filter(x => x.t === 'text').map(x => x.id); }
+function exHasOverall(ex) { return ex.blocks.some(x => x.t === 'overall'); }
+
+/* ---------- utils ---------- */
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+function uuid() {
+  if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+  const b = new Uint8Array(16);
+  if (window.crypto && crypto.getRandomValues) crypto.getRandomValues(b); else b.forEach((_, i) => b[i] = Math.random() * 256 | 0);
+  b[6] = (b[6] & 15) | 64; b[8] = (b[8] & 63) | 128;
+  const h = Array.from(b, x => x.toString(16).padStart(2, '0')).join('');
+  return h.slice(0, 8) + '-' + h.slice(8, 12) + '-' + h.slice(12, 16) + '-' + h.slice(16, 20) + '-' + h.slice(20);
+}
+function fmtDate(d) { if (!d) return ''; const m = String(d).slice(0, 10).match(/^(\d{4})-(\d{2})-(\d{2})$/); return m ? `${m[3]}/${m[2]}/${m[1]}` : String(d); }
+function fmtTime(ts) { const d = new Date(ts); return d.toLocaleString('he-IL', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }); }
+function todayISO() { const d = new Date(); return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10); }
+
+/* ---------- storage ---------- */
+let memStore = null;
+function lsGet() { try { return localStorage.getItem(LS_KEY); } catch (e) { return memStore; } }
+function lsSet(v) { try { localStorage.setItem(LS_KEY, v); return true; } catch (e) { memStore = v; return false; } }
+
+function blankSheet(ex) {
+  return { id: uuid(), candidateId: '', candidateName: '', character: ex.character.fixed ? ex.character.name : '',
+           ratings: {}, overall: null, answers: {}, uploadedSig: null, updatedAt: null };
+}
+function blankState(keep) {
+  return {
+    v: 1, actor: (keep && keep.actor) || '', center: { id: '', name: '', date: '' }, manual: false,
+    sheets: Object.fromEntries(EXERCISES.map(ex => [ex.key, blankSheet(ex)])),
+    lastUploadAt: null, tab: 'details',
+    cache: (keep && keep.cache) || { centers: [], candidates: {} }
+  };
+}
+function normalize(raw) {
+  const st = blankState();
+  if (!raw || typeof raw !== 'object') return st;
+  st.actor = typeof raw.actor === 'string' ? raw.actor : '';
+  st.center = Object.assign(st.center, raw.center || {});
+  st.manual = !!raw.manual;
+  st.lastUploadAt = raw.lastUploadAt || null;
+  st.tab = TAB_ORDER.includes(raw.tab) ? raw.tab : 'details';
+  if (raw.cache && typeof raw.cache === 'object') st.cache = { centers: raw.cache.centers || [], candidates: raw.cache.candidates || {} };
+  for (const ex of EXERCISES) {
+    const r = raw.sheets && raw.sheets[ex.key];
+    if (!r) continue;
+    const s = st.sheets[ex.key];
+    Object.assign(s, {
+      id: r.id || s.id, candidateId: r.candidateId || '', candidateName: r.candidateName || '',
+      character: ex.character.fixed ? ex.character.name : (r.character || ''),
+      ratings: r.ratings || {}, overall: r.overall || null, answers: r.answers || {},
+      uploadedSig: r.uploadedSig || null, updatedAt: r.updatedAt || null
+    });
+  }
+  return st;
+}
+function loadState() { try { return normalize(JSON.parse(lsGet() || 'null')); } catch (e) { return blankState(); } }
+
+let state = loadState();
+let saveTimer = null;
+function save(now) {
+  clearTimeout(saveTimer);
+  const doit = () => {
+    const ok = lsSet(JSON.stringify(state));
+    $('#saveInd').innerHTML = ok ? `${icon('check', 14, 2.2)} נשמר במכשיר` : '⚠ לא נשמר במכשיר';
+  };
+  if (now) doit(); else saveTimer = setTimeout(doit, 250);
+}
+
+/* ---------- status logic ---------- */
+const S = ex => state.sheets[ex.key];
+function manualMode() { return !SERVER || state.manual; }
+
+function hasData(ex, s) {
+  return !!(s.candidateId || (s.candidateName || '').trim() || Object.keys(s.ratings).length || s.overall ||
+    Object.values(s.answers).some(v => v && v.trim()) || (!ex.character.fixed && (s.character || '').trim()));
+}
+function missingList(ex, s) {
+  const m = [];
+  if (!(s.candidateName || '').trim()) m.push('מועמד');
+  const dimsMissing = exDims(ex).filter(d => !s.ratings[d]).length;
+  if (dimsMissing) m.push(dimsMissing === 1 ? 'ממד אחד בדירוג' : `${dimsMissing} ממדים בדירוג`);
+  if (exHasOverall(ex) && !s.overall) m.push('ציון מסכם');
+  const textsMissing = exTexts(ex).filter(t => !(s.answers[t] || '').trim()).length;
+  if (textsMissing) m.push(textsMissing === 1 ? 'שאלה פתוחה אחת' : `${textsMissing} שאלות פתוחות`);
+  return m;
+}
+function sig(ex, s) {
+  return JSON.stringify([state.actor.trim(), state.center.id, state.center.name.trim(), state.center.date,
+    s.candidateId, (s.candidateName || '').trim(), s.character,
+    exDims(ex).map(d => s.ratings[d] || null), s.overall || null,
+    exTexts(ex).map(t => (s.answers[t] || '').trim())]);
+}
+function status(ex) {
+  const s = S(ex);
+  if (!hasData(ex, s)) return 'empty';
+  if (s.uploadedSig && s.uploadedSig === sig(ex, s)) return 'uploaded';
+  return missingList(ex, s).length ? 'partial' : 'complete';
+}
+const STATUS_TXT = { empty: 'טרם מולא', partial: 'בתהליך', complete: 'מוכן להעלאה', uploaded: 'הועלה ✓' };
+
+/* ---------- Supabase (REST) ---------- */
+async function sbFetch(path, opts) {
+  opts = opts || {};
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), CONFIG.requestTimeoutMs);
+  try {
+    const res = await fetch(CONFIG.supabaseUrl.replace(/\/+$/, '') + '/rest/v1/' + path, {
+      method: opts.method || 'GET',
+      headers: Object.assign({
+        apikey: CONFIG.supabaseAnonKey,
+        Authorization: 'Bearer ' + CONFIG.supabaseAnonKey,
+        'Content-Type': 'application/json'
+      }, opts.headers || {}),
+      body: opts.body,
+      signal: ctrl.signal
+    });
+    const text = await res.text();
+    if (!res.ok) {
+      let msg = text, code = '';
+      try { const j = JSON.parse(text); msg = j.message || j.hint || text; code = j.code || ''; } catch (e) {}
+      const err = new Error(`${res.status} ${msg}`.trim());
+      err.status = res.status; err.code = code; err.serverMsg = msg;
+      throw err;
+    }
+    return text ? JSON.parse(text) : null;
+  } catch (e) {
+    if (e.name === 'AbortError') throw new Error('תם הזמן להמתנה לשרת');
+    throw e;
+  } finally { clearTimeout(timer); }
+}
+
+function parseMaybeJson(v) { if (typeof v === 'string') { try { return JSON.parse(v); } catch (e) { return null; } } return v; }
+
+// Sales Workshop centers: rows in "files" whose submission_id starts with CENTER_ (or sw_CENTER_);
+// json_data = { center: { type:'assessment_center', centerName, evaluators[], trainees[], createdAt } }
+async function fetchCenters() {
+  const or = '(' + CONFIG.centerPrefixes.map(p => 'submission_id.like.' + p + '*').join(',') + ')';
+  const q = `${encodeURIComponent(CONFIG.centersTable)}?select=submission_id,assessment_name,json_data,created_at` +
+            `&or=${encodeURIComponent(or)}&order=created_at.desc&limit=${CONFIG.centersLimit}`;
+  const rows = await sbFetch(q);
+  const out = [], seen = new Set();
+  (rows || []).forEach(r => {
+    const p = parseMaybeJson(r.json_data) || {};
+    const rec = p.center || p.meta;
+    if (!rec || rec.type !== 'assessment_center') return;
+    const id = String(r.submission_id);
+    if (seen.has(id)) return; seen.add(id);
+    const names = [];
+    (rec.trainees || []).forEach(t => { t = String(t == null ? '' : t).trim(); if (t && !names.includes(t)) names.push(t); });
+    out.push({
+      id, name: String(rec.centerName || r.assessment_name || '').trim(),
+      created: String(rec.createdAt || r.created_at || '').slice(0, 10),
+      candidates: names.map(n => ({ id: n, name: n }))
+    });
+  });
+  return out.filter(c => c.name);
+}
+async function fetchCandidates(centerId) {
+  let center = (state.cache.centers || []).find(c => c.id === centerId);
+  if (!center) { state.cache.centers = await fetchCenters(); center = state.cache.centers.find(c => c.id === centerId); }
+  return center && center.candidates ? center.candidates : [];
+}
+
+async function rpc(name, args) {
+  return sbFetch('rpc/' + encodeURIComponent(name), { method: 'POST', body: JSON.stringify(args || {}) });
+}
+
+/* ---------- toast ---------- */
+let toastTimer = null;
+function toast(msg, type, ms) {
+  const t = $('#toast');
+  t.className = 'toast show ' + (type || '');
+  t.textContent = msg;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.className = 'toast ' + (type || ''); }, ms || 3200);
+}
+
+/* ---------- stage map (progress illustration) ---------- */
+function stageSvg() {
+  const xs = [296, 238, 180, 122, 64];               // exercise 1 on the right (RTL)
+  const LIT = { empty: 0, partial: .38, complete: .85, uploaded: 1 };
+  let planks = '';
+  for (let i = -7; i <= 7; i++) planks += `<path d="M${180 + i * 17} 132 L${180 + i * 38} 182" stroke="rgba(0,0,0,.28)" stroke-width="1"/>`;
+  let scallops = '';
+  for (let i = 0; i < 19; i++) scallops += `<circle cx="${i * 20 + 10}" cy="12" r="10.5"/>`;
+  let actors = '';
+  EXERCISES.forEach((ex, i) => {
+    const x = xs[i], st = status(ex), op = LIT[st];
+    const lens = op ? '#fff0b0' : '#4b3a43';
+    const fig = st === 'empty' ? '' :
+      `<g fill="#14080d" opacity="${st === 'partial' ? .55 : .95}"><circle cx="${x}" cy="104" r="6.5"/><path d="M${x - 11} 140 Q${x - 11} 113 ${x} 112 Q${x + 11} 113 ${x + 11} 140Z"/></g>`;
+    actors += `<g data-go="${ex.key}" role="button" aria-label="${esc(ex.tab)} – ${STATUS_TXT[st]}">
+      <rect x="${x - 28}" y="16" width="56" height="166" fill="transparent"/>
+      <polygon points="${x - 5},30 ${x + 5},30 ${x + 27},141 ${x - 27},141" fill="url(#gBeam)" opacity="${op}"/>
+      <ellipse cx="${x}" cy="141" rx="30" ry="7.5" fill="url(#gPool)" opacity="${op ? Math.min(1, op + .1) : .12}"/>
+      ${fig}
+      <g transform="translate(${x},22)"><rect x="-7" y="-6" width="14" height="11" rx="3" fill="#1d1418" stroke="#7a6670" stroke-width="1"/><circle cy="6" r="3.6" fill="${lens}"${op ? ' filter="url(#glow)"' : ''}/></g>
+      <text x="${x}" y="166" text-anchor="middle" font-size="14" font-weight="700" fill="${op ? '#ffe6a0' : '#8f7f87'}">${ex.order}${st === 'uploaded' ? ' ✓' : ''}</text>
+    </g>`;
+  });
+  return `<svg class="stage-svg" viewBox="0 0 360 182" role="img" aria-label="מפת הבמה: התקדמות התרגילים">
+  <defs>
+    <linearGradient id="gWall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c1823"/><stop offset="1" stop-color="#0f080c"/></linearGradient>
+    <linearGradient id="gFloor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#80583a"/><stop offset="1" stop-color="#3a2616"/></linearGradient>
+    <linearGradient id="gCurt" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4a0914"/><stop offset=".18" stop-color="#9b1f33"/><stop offset=".34" stop-color="#57101c"/>
+      <stop offset=".52" stop-color="#a42438"/><stop offset=".7" stop-color="#5c0f1d"/><stop offset=".86" stop-color="#9b1f33"/><stop offset="1" stop-color="#3e0711"/>
+    </linearGradient>
+    <linearGradient id="gBeam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6cf" stop-opacity=".9"/><stop offset="1" stop-color="#ffd25e" stop-opacity=".12"/></linearGradient>
+    <radialGradient id="gPool"><stop offset="0" stop-color="#fff3c0" stop-opacity=".95"/><stop offset="1" stop-color="#ffcc4d" stop-opacity="0"/></radialGradient>
+    <filter id="glow" x="-2" y="-2" width="5" height="5"><feGaussianBlur stdDeviation="2.2"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="360" height="182" fill="url(#gWall)"/>
+  <path d="M0 132H360V182H0Z" fill="url(#gFloor)"/>${planks}
+  <rect y="130" width="360" height="3" fill="#24150c"/>
+  <rect x="34" y="13" width="292" height="4" rx="2" fill="#3b2d35"/>
+  ${actors}
+  <path d="M0 0H50C45 40 38 92 44 132C30 137 14 146 0 156Z" fill="url(#gCurt)"/>
+  <path d="M360 0H310C315 40 322 92 316 132C330 137 346 146 360 156Z" fill="url(#gCurt)"/>
+  <rect x="38" y="96" width="9" height="5" rx="2" fill="#c9a227"/><rect x="313" y="96" width="9" height="5" rx="2" fill="#c9a227"/>
+  <g fill="#7a1222" stroke="#c9a227" stroke-width="1.4">${scallops}</g>
+  <rect width="360" height="12" fill="#7a1222"/><rect width="360" height="2" fill="#c9a227" opacity=".7"/>
+</svg>`;
+}
+
+/* ---------- rendering ---------- */
+function scaleHtml(exKey, kind, id, labeled) {
+  const btns = SCALE.map(([v, l]) =>
+    `<button type="button" role="radio" aria-checked="false" aria-label="${v} – ${l}" data-ex="${exKey}" data-kind="${kind}" data-id="${id}" data-v="${v}">` +
+    `<span class="n">${v}</span>${labeled ? `<span class="l">${l}</span>` : ''}</button>`).join('');
+  return `<div class="scale${labeled ? ' labeled' : ''}" role="radiogroup" data-group="${exKey}:${kind}:${id}">${btns}</div>` +
+    (labeled ? '' : '<div class="anchors"><span>גבוה ביותר</span><span>נמוך ביותר</span></div>');
+}
+
+function questionHtml(ex, b) {
+  const lbl = `<div class="q-label"><strong>${b.label}</strong>${b.after ? ` <span class="h">${b.after}</span>` : ''}${b.hint ? `<span class="h2">${b.hint}</span>` : ''}</div>`;
+  return `<div class="q"><label for="ta-${ex.key}-${b.id}" style="display:block">${lbl}</label>` +
+    `<textarea class="inp" id="ta-${ex.key}-${b.id}" rows="${b.rows || 3}" data-ex="${ex.key}" data-kind="answer" data-id="${b.id}"></textarea></div>`;
+}
+
+function sheetHtml(ex) {
+  let h = `<div class="playbill">
+      <div class="bulbs"></div>
+      <div class="pb-body">
+        <div class="pb-icon">${icon(ex.icon, 34, 1.5)}</div>
+        <div class="pb-kicker">תרגיל ${ex.order} מתוך ${EXERCISES.length}</div>
+        <div class="pb-title">דף הערכה לשחקן בתרגיל<span>"${ex.title}"</span></div>
+      </div>
+      <div class="bulbs b"></div>
+    </div>
+    <div class="card">
+      <div class="cast-head">${icon('ticket')} הליהוק</div>
+      <div class="cast-row"><span class="k">שם השחקן</span><i></i><b data-bind="actor"></b></div>
+      ${ex.character.fixed ? `<div class="cast-row"><span class="k">בתפקיד</span><i></i><b class="role">${esc(ex.character.name)}</b></div>` : ''}
+      <div class="cast-row"><span class="k">מרכז ההכשרה</span><i></i><b data-bind="center"></b></div>
+      <div class="cast-row"><span class="k">תאריך</span><i></i><b data-bind="date"></b></div>
+      <div class="cast-sep"></div>
+      ${ex.character.fixed ? '' : `<label class="fld"><span>${icon('masks', 18)} הדמות שגילמתי</span><input class="inp" type="text" data-ex="${ex.key}" data-kind="character" placeholder="שם הדמות"></label>`}
+      <div class="fld" style="margin-bottom:2px"><span>${icon('user', 18)} שם המועמד</span><div data-cand-for="${ex.key}"></div></div>
+    </div>`;
+
+  let card = '';
+  const flush = () => { if (card) { h += `<div class="card">${card}</div>`; card = ''; } };
+  for (const b of ex.blocks) {
+    if (b.t === 'note') card += `<p class="note">${icon('script', 18)}<span>${b.text}</span></p>`;
+    else if (b.t === 'lead') card += `<p class="lead">${b.text}</p>`;
+    else if (b.t === 'text') card += questionHtml(ex, b);
+    else if (b.t === 'ratings') {
+      flush();
+      const legend = SCALE.slice().reverse().map(([v, l]) => `<span><b>${v}</b> ${l}</span>`).join('');
+      card += `<div class="card-title" style="font-size:17px">${icon('spotlight')} דירוג התפקוד</div>`;
+      card += `<p class="lead" style="margin-bottom:8px">${RATING_INTRO}</p><div class="legend">${legend}</div>`;
+      b.dims.forEach((d, i) => {
+        card += `<div class="dim"><div class="dim-head"><span class="dim-num">${i + 1}.</span><span class="dim-label">${DIM[d]}</span><span class="dim-val" data-val-for="${ex.key}:${d}"></span></div>${scaleHtml(ex.key, 'rating', d, false)}</div>`;
+      });
+      card += `<div class="profile"><div class="profile-h">${icon('chart', 18)} פרופיל הדירוג</div><div class="bars" data-bars-for="${ex.key}"></div>` +
+        `<div class="bar-n">${b.dims.map((d, i) => `<span>${i + 1}</span>`).join('')}</div></div>`;
+      flush();
+    } else if (b.t === 'overall') {
+      flush();
+      card += `<div class="card-title" style="font-size:17px">${icon('star')} ${b.label}</div>${scaleHtml(ex.key, 'overall', b.id, true)}`;
+      flush();
+    }
+  }
+  flush();
+  h += `<div class="missing" data-missing-for="${ex.key}"></div>`;
+  return h;
+}
+
+function detailsHtml() {
+  return `
+  <div id="srvBanner"></div>
+  <div class="card stage-card">
+    <div class="stage-title">${icon('spotlight')} מפת הבמה</div>
+    <div id="stageWrap"></div>
+    <div class="stage-cap" id="stageCap"></div>
+  </div>
+  <div class="card">
+    <h2 class="card-title">${icon('masks', 22)} פרטי המפגש</h2>
+    <label class="fld"><span>${icon('user', 18)} שם השחקן</span><input id="actorName" class="inp" type="text" autocomplete="name" placeholder="שם מלא"></label>
+    <div class="fld"><span>${icon('theater', 18)} מרכז הכשרה</span><div id="centerWrap"></div></div>
+    <label class="fld"><span>${icon('calendar', 18)} תאריך המרכז</span><input id="centerDate" class="inp" type="date"></label>
+    <div class="srv" id="srvStatus"><i></i><span></span></div>
+  </div>
+  <div class="card">
+    <h2 class="card-title">${icon('ticket', 22)} סדר התרגילים</h2>
+    <p class="hint" style="margin:-6px 0 6px">בכל תרגיל יש לבחור את המועמד שפגשת בו.</p>
+    <div id="exList"></div>
+  </div>
+  <div class="card">
+    <h2 class="card-title">${icon('save', 22)} שמירה וגיבוי</h2>
+    <div class="hint" id="lastUpload"></div>
+    <div class="row2">
+      <button class="btn btn-ghost" id="btnBackup">${icon('save', 18)} שמירת קובץ גיבוי</button>
+      <button class="btn btn-ghost" id="btnShare">${icon('share', 18)} שליחת גיבוי</button>
+    </div>
+    <button class="btn btn-ghost block" id="btnImport">${icon('folder', 18)} טעינת קובץ גיבוי</button>
+    <button class="btn btn-text block" id="btnNew">פתיחת טופס חדש</button>
+  </div>
+  <div class="ver">${icon('masks', 16)} גרסה ${APP_VERSION}</div>`;
+}
+
+const UPLOAD_LABEL = `${icon('upload', 18, 2)} העלאה לשרת`;
+
+function buildAll() {
+  $('#brandIco').innerHTML = icon('masks', 24, 1.6);
+  $('#btnUpload').innerHTML = UPLOAD_LABEL;
+  $('#tabs').innerHTML = TAB_ORDER.map(k => {
+    if (k === 'details') return `<button class="tab" data-go="details">${icon('masks', 16)}פרטים</button>`;
+    return `<button class="tab" data-go="${k}" data-status="empty"><span class="dot"></span>${EX[k].order}. ${EX[k].tab}</button>`;
+  }).join('');
+  $('#main').innerHTML =
+    `<section data-tab="details">${detailsHtml()}</section>` +
+    EXERCISES.map(ex => `<section data-tab="${ex.key}">${sheetHtml(ex)}</section>`).join('');
+
+  $('#actorName').value = state.actor;
+  $('#centerDate').value = state.center.date || '';
+  for (const ex of EXERCISES) {
+    const s = S(ex);
+    for (const t of exTexts(ex)) { const ta = $(`#ta-${ex.key}-${t}`); if (ta) ta.value = s.answers[t] || ''; }
+    const ch = $(`[data-ex="${ex.key}"][data-kind="character"]`); if (ch) ch.value = s.character || '';
+    for (const d of exDims(ex)) paintScale(ex.key, 'rating', d);
+    if (exHasOverall(ex)) paintScale(ex.key, 'overall', 'overall');
+  }
+  if (!navigator.share) { $('#btnShare').style.display = 'none'; $('#btnBackup').parentElement.style.gridTemplateColumns = '1fr'; }
+  renderCenter();
+  renderAllCandidates();
+  renderServerStatus();
+  refreshUI();
+  goTab(state.tab, true);
+}
+
+function paintScale(exKey, kind, id) {
+  const s = state.sheets[exKey];
+  const val = kind === 'overall' ? s.overall : s.ratings[id];
+  $$(`.scale[data-group="${exKey}:${kind}:${id}"] button`).forEach(b => {
+    const on = +b.dataset.v === val;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-checked', on ? 'true' : 'false');
+  });
+  if (kind === 'rating') {
+    const el = $(`[data-val-for="${exKey}:${id}"]`);
+    if (el) el.textContent = val ? `${val} · ${SCALE_LABEL[val]}` : '';
+  }
+}
+
+function renderBars(ex) {
+  const el = $(`[data-bars-for="${ex.key}"]`); if (!el) return;
+  const s = S(ex);
+  el.innerHTML = exDims(ex).map(d => {
+    const v = s.ratings[d];
+    return v ? `<div class="bar" title="${esc(DIM[d])}: ${v}"><em>${v}</em><i style="height:${(v / 7 * 82).toFixed(1)}%"></i></div>`
+             : `<div class="bar empty" title="${esc(DIM[d])}: טרם דורג"><em>&nbsp;</em><i></i></div>`;
+  }).join('');
+}
+
+/* ----- center field ----- */
+function renderCenter() {
+  const w = $('#centerWrap');
+  if (manualMode()) {
+    w.innerHTML = `<input id="centerNameInp" class="inp" type="text" placeholder="שם מרכז ההכשרה">` +
+      (SERVER ? `<button class="linkbtn" id="btnServerMode">בחירה מרשימת המרכזים בשרת</button>` : '');
+    $('#centerNameInp').value = state.center.name || '';
+  } else {
+    const list = state.cache.centers || [];
+    let opts = `<option value="">${list.length ? 'בחר מרכז הכשרה…' : 'טוען מרכזים…'}</option>`;
+    const ids = new Set(list.map(c => c.id));
+    if (state.center.id && !ids.has(state.center.id)) opts += `<option value="${esc(state.center.id)}">${esc(state.center.name)}</option>`;
+    opts += list.map(c => `<option value="${esc(c.id)}">${esc(c.name)}${c.created ? ' · נוצר ' + fmtDate(c.created) : ''}</option>`).join('');
+    const cands = state.center.id ? currentCandidates() : [];
+    const castHtml = cands.length
+      ? `<div class="cand-chips"><span>${icon('masks', 16)} המועמדים במרכז (${cands.length}):</span>${cands.map(c => `<b>${esc(c.name)}</b>`).join('')}</div>`
+      : (state.center.id ? `<div class="cand-chips empty">לא הוגדרו מועמדים במרכז הזה ב-Sales Workshop</div>` : '');
+    w.innerHTML = `<div class="sel-row"><select id="centerSelect" class="inp">${opts}</select>` +
+      `<button class="icon-btn" id="btnRefresh" aria-label="רענון רשימת המרכזים">${icon('refresh', 20)}</button></div>` +
+      castHtml +
+      `<button class="linkbtn" id="btnManualMode">המרכז לא מופיע? הזנה ידנית</button>`;
+    $('#centerSelect').value = state.center.id || '';
+  }
+}
+
+/* ----- candidate field per sheet ----- */
+function currentCandidates() { return (state.cache.candidates && state.cache.candidates[state.center.id]) || []; }
+function renderCandidate(exKey) {
+  const s = state.sheets[exKey];
+  const w = $(`[data-cand-for="${exKey}"]`);
+  if (!w) return;
+  if (manualMode()) {
+    w.innerHTML = `<input class="inp" type="text" list="candNames" autocomplete="off" placeholder="שם המועמד" data-ex="${exKey}" data-kind="candidateText">`;
+    w.firstChild.value = s.candidateName || '';
+    return;
+  }
+  if (!state.center.id) {
+    w.innerHTML = `<select class="inp" disabled><option>יש לבחור תחילה מרכז הכשרה (בלשונית "פרטים")</option></select>`;
+    return;
+  }
+  const list = currentCandidates();
+  let opts = `<option value="">${list.length ? 'בחר מועמד…' : 'אין מועמדים זמינים כרגע'}</option>`;
+  if (s.candidateId && !list.some(c => c.id === s.candidateId)) opts += `<option value="${esc(s.candidateId)}">${esc(s.candidateName)}</option>`;
+  opts += list.map(c => `<option value="${esc(c.id)}">${esc(c.name)}</option>`).join('');
+  w.innerHTML = `<select class="inp" data-ex="${exKey}" data-kind="candidate">${opts}</select>`;
+  w.firstChild.value = s.candidateId || '';
+}
+function renderAllCandidates() { EXERCISES.forEach(ex => renderCandidate(ex.key)); updateNameList(); }
+function updateNameList() {
+  const names = new Set(EXERCISES.map(ex => (S(ex).candidateName || '').trim()).filter(Boolean));
+  $('#candNames').innerHTML = Array.from(names).map(n => `<option value="${esc(n)}">`).join('');
+}
+
+/* ----- server status ----- */
+let srvState = { kind: SERVER ? 'loading' : 'none', msg: '' };
+function renderServerStatus() {
+  const el = $('#srvStatus'); if (!el) return;
+  const map = {
+    none:    ['warn', 'השרת לא הוגדר – הנתונים נשמרים במכשיר בלבד'],
+    loading: ['', 'מתחבר לשרת…'],
+    ok:      ['ok', 'מחובר לשרת'],
+    cached:  ['warn', 'אין חיבור לשרת – מוצגים נתונים שמורים'],
+    error:   ['err', 'אין חיבור לשרת']
+  };
+  const [cls, txt] = map[srvState.kind] || map.none;
+  el.className = 'srv ' + cls;
+  el.querySelector('span').textContent = txt + (srvState.msg ? ` (${srvState.msg})` : '');
+  const ban = $('#srvBanner');
+  if (!SERVER) ban.innerHTML = `<div class="banner warn">${icon('alert', 18)}<span>מצב ידני: יש להקליד את שם המרכז ואת שמות המועמדים. הכול נשמר במכשיר, ואפשר לשמור קובץ גיבוי.</span></div>`;
+  else if (state.manual) ban.innerHTML = `<div class="banner info">${icon('alert', 18)}<span>הזנה ידנית: שם המרכז והמועמדים מוקלדים ידנית. ההעלאה לשרת תעבוד כרגיל.</span></div>`;
+  else ban.innerHTML = '';
+}
+
+/* ----- statuses, meta, stage, missing ----- */
+function refreshUI() {
+  const counts = { empty: 0, partial: 0, complete: 0, uploaded: 0 };
+  for (const ex of EXERCISES) {
+    const st = status(ex); counts[st]++;
+    const tab = $(`.tab[data-go="${ex.key}"]`); if (tab) tab.dataset.status = st;
+    const miss = $(`[data-missing-for="${ex.key}"]`);
+    if (miss) {
+      const m = missingList(ex, S(ex));
+      if (st === 'uploaded') { miss.className = 'missing okmsg'; miss.innerHTML = `${icon('check', 18, 2)} התרגיל הועלה לשרת`; }
+      else if (!m.length) { miss.className = 'missing okmsg'; miss.innerHTML = `${icon('star', 18)} התרגיל מולא במלואו – מוכן להעלאה`; }
+      else { miss.className = 'missing'; miss.innerHTML = `${icon('script', 18)} חסר: ${esc(m.join(', '))}`; }
+    }
+    renderBars(ex);
+  }
+  const stage = $('#stageWrap');
+  if (stage) {
+    stage.innerHTML = stageSvg();
+    const done = counts.complete + counts.uploaded;
+    $('#stageCap').innerHTML = `<b>${done} מתוך ${EXERCISES.length}</b> תרגילים מולאו` +
+      `<span class="lg"><i style="background:#ffe27a;box-shadow:0 0 6px #ffe27a"></i>מולא</span>` +
+      `<span class="lg"><i style="background:#f0a531"></i>בתהליך</span>` +
+      `<span class="lg"><i style="background:#6b5a62"></i>טרם מולא</span>`;
+  }
+  const list = $('#exList');
+  if (list) list.innerHTML = EXERCISES.map(ex => {
+    const s = S(ex), st = status(ex);
+    const sub = [s.candidateName ? 'מועמד: ' + s.candidateName : 'לא נבחר מועמד', s.character ? 'בתפקיד: ' + s.character : ''].filter(Boolean).join(' · ');
+    return `<button class="ex-row" data-go="${ex.key}"><span class="ex-ico">${icon(ex.icon, 22, 1.6)}<b>${ex.order}</b></span>` +
+      `<span class="ex-main"><div class="ex-name">${esc(ex.tab)}</div><div class="ex-sub">${esc(sub)}</div></span>` +
+      `<span class="pill" data-status="${st}">${STATUS_TXT[st]}</span></button>`;
+  }).join('');
+  $$('[data-bind="actor"]').forEach(e => e.textContent = state.actor.trim() || '—');
+  $$('[data-bind="center"]').forEach(e => e.textContent = state.center.name.trim() || '—');
+  $$('[data-bind="date"]').forEach(e => e.textContent = fmtDate(state.center.date) || '—');
+  const lu = $('#lastUpload');
+  if (lu) {
+    const waiting = counts.partial + counts.complete;
+    lu.textContent = (state.lastUploadAt ? `העלאה אחרונה לשרת: ${fmtTime(state.lastUploadAt)}. ` : 'עדיין לא בוצעה העלאה לשרת. ') +
+      (waiting ? (waiting === 1 ? 'תרגיל אחד ממתין להעלאה.' : `${waiting} תרגילים ממתינים להעלאה.`) : '');
+  }
+}
+
+/* ----- navigation ----- */
+function goTab(key, noScroll) {
+  if (!TAB_ORDER.includes(key)) key = 'details';
+  state.tab = key;
+  $$('section[data-tab]').forEach(s => s.classList.toggle('shown', s.dataset.tab === key));
+  $$('.tab').forEach(t => t.classList.toggle('active', t.dataset.go === key));
+  const t = $(`.tab[data-go="${key}"]`);
+  if (t && t.scrollIntoView) t.scrollIntoView({ inline: 'center', block: 'nearest', behavior: noScroll ? 'auto' : 'smooth' });
+  $$(`section[data-tab="${key}"] textarea`).forEach(autoGrow);
+  const i = TAB_ORDER.indexOf(key);
+  $('#btnPrev').style.visibility = i === 0 ? 'hidden' : 'visible';
+  $('#btnNext').textContent = i === TAB_ORDER.length - 1 ? 'לסיכום ←' : (i === 0 ? 'לתרגילים ←' : 'הבא ←');
+  if (!noScroll) window.scrollTo({ top: 0, behavior: 'auto' });
+  save();
+}
+function autoGrow(ta) { ta.style.height = 'auto'; ta.style.height = Math.max(ta.scrollHeight + 2, 72) + 'px'; }
+
+/* ---------- data loading ---------- */
+async function loadCenters() {
+  if (!SERVER || state.manual) return;
+  srvState = { kind: 'loading', msg: '' }; renderServerStatus();
+  try {
+    const list = await fetchCenters();
+    state.cache.centers = list;
+    srvState = { kind: 'ok', msg: '' };
+    const cur = list.find(c => c.id === state.center.id);
+    if (cur) state.center.name = cur.name;
+    save();
+  } catch (e) {
+    srvState = { kind: (state.cache.centers || []).length ? 'cached' : 'error', msg: e.message };
+  }
+  renderCenter(); renderServerStatus();
+  if (state.center.id) await loadCandidates(state.center.id);
+}
+async function loadCandidates(centerId) {
+  if (!SERVER || state.manual || !centerId) return;
+  try {
+    const list = await fetchCandidates(centerId);
+    state.cache.candidates[centerId] = list;
+    for (const ex of EXERCISES) {
+      const s = S(ex), c = list.find(x => x.id === s.candidateId);
+      if (c) s.candidateName = c.name;
+    }
+    save();
+  } catch (e) {
+    srvState = { kind: currentCandidates().length ? 'cached' : 'error', msg: e.message };
+    renderServerStatus();
+  }
+  renderCenter(); renderAllCandidates(); refreshUI();
+}
+
+/* ---------- upload ---------- */
+function toRow(ex) {
+  const s = S(ex), m = missingList(ex, s);
+  return {
+    id: s.id,
+    center_id: state.center.id || null,
+    center_name: state.center.name.trim(),
+    center_date: state.center.date || null,
+    actor_name: state.actor.trim(),
+    exercise_key: ex.key,
+    exercise_order: ex.order,
+    exercise_title: ex.title,
+    character_name: (s.character || '').trim() || null,
+    candidate_id: s.candidateId || null,
+    candidate_name: (s.candidateName || '').trim(),
+    ratings: Object.fromEntries(exDims(ex).map(d => [d, s.ratings[d] || null])),
+    overall_score: exHasOverall(ex) ? (s.overall || null) : null,
+    answers: Object.fromEntries(exTexts(ex).map(t => [t, (s.answers[t] || '').trim()])),
+    is_complete: m.length === 0,
+    app_version: APP_VERSION,
+    submitted_at: new Date().toISOString()
+  };
+}
+let uploading = false;
+async function uploadAll() {
+  if (uploading) return;
+  if (!SERVER) { toast('השרת עדיין לא הוגדר. הנתונים שמורים במכשיר – אפשר לשמור קובץ גיבוי בלשונית "פרטים".', 'warn', 5000); return; }
+  if (!state.actor.trim()) { goTab('details'); $('#actorName').focus(); toast('יש למלא את שם השחקן', 'warn'); return; }
+  if (!state.center.name.trim()) { goTab('details'); toast('יש לבחור מרכז הכשרה', 'warn'); return; }
+  const withData = EXERCISES.filter(ex => hasData(ex, S(ex)));
+  if (!withData.length) { toast('אין עדיין תרגילים ממולאים להעלאה', 'warn'); return; }
+  const noCand = withData.filter(ex => !(S(ex).candidateName || '').trim());
+  if (noCand.length) { goTab(noCand[0].key); toast(`בתרגיל "${noCand[0].tab}" לא נבחר מועמד`, 'warn', 4000); return; }
+  const pending = withData.filter(ex => status(ex) !== 'uploaded');
+  if (!pending.length) { toast('כל התרגילים הממולאים כבר הועלו ✓', 'ok'); return; }
+  const incomplete = pending.filter(ex => missingList(ex, S(ex)).length);
+  if (incomplete.length && !confirm(
+      `התרגילים הבאים לא מולאו במלואם:\n${incomplete.map(ex => '• ' + ex.tab + ' – חסר: ' + missingList(ex, S(ex)).join(', ')).join('\n')}\n\nלהעלות בכל זאת? אפשר להשלים אחר כך ולהעלות שוב, והנתונים בשרת יתעדכנו.`)) return;
+  if (navigator.onLine === false) { toast('אין חיבור לאינטרנט. הנתונים שמורים במכשיר – נסה שוב כשיהיה חיבור.', 'err', 5000); return; }
+
+  uploading = true;
+  const btn = $('#btnUpload');
+  btn.disabled = true; btn.innerHTML = '<span class="spin"></span> מעלה…';
+  try {
+    const rows = pending.map(toRow);
+    const acc = accessGet();
+    await rpc(CONFIG.submitRpc, { p_code: acc ? acc.code : '', p_rows: rows });
+    pending.forEach(ex => { S(ex).uploadedSig = sig(ex, S(ex)); });
+    state.lastUploadAt = new Date().toISOString();
+    save(true); refreshUI();
+    toast(rows.length === 1 ? '👏 תרגיל אחד הועלה לשרת' : `👏 ${rows.length} תרגילים הועלו לשרת`, 'ok', 3500);
+  } catch (e) {
+    if (e.status === 403 || e.code === '28000') {
+      accessClear();
+      uploading = false; btn.disabled = false; btn.innerHTML = UPLOAD_LABEL;
+      showGate('קוד הכניסה פג תוקף. הזן את הקוד של היום – וההעלאה תמשיך מיד.', () => uploadAll());
+      return;
+    }
+    const missing = e.status === 404 || e.code === 'PGRST202';
+    toast(missing ? 'פונקציית ההעלאה עדיין לא הותקנה בשרת (קובץ ה-SQL, חלק 1). הנתונים שמורים במכשיר.'
+                  : `ההעלאה נכשלה: ${e.serverMsg || e.message}. הנתונים שמורים במכשיר – אפשר לנסות שוב או לשמור קובץ גיבוי.`, 'err', 7000);
+  } finally {
+    uploading = false; btn.disabled = false; btn.innerHTML = UPLOAD_LABEL;
+  }
+}
+
+/* ---------- daily access code (checked on the server; the formula is not in this file) ---------- */
+const ACC_KEY = 'actorq.v1.access';
+function accessGet() { try { return JSON.parse(localStorage.getItem(ACC_KEY) || 'null'); } catch (e) { return null; } }
+function accessSet(code) { try { localStorage.setItem(ACC_KEY, JSON.stringify({ code: code, day: todayISO() })); } catch (e) {} }
+function accessClear() { try { localStorage.removeItem(ACC_KEY); } catch (e) {} }
+function needGate() { const a = accessGet(); return SERVER && !(a && a.code && a.day === todayISO()); }
+let gateAfter = null;
+function showGate(msg, after) {
+  gateAfter = after || null;
+  $('#gateMsg').textContent = msg || '';
+  $('#gateMsg').className = 'gate-msg' + (msg ? ' warn' : '');
+  $('#gateCode').value = '';
+  $('#gate').hidden = false;
+  document.body.classList.add('gated');
+  setTimeout(() => { try { $('#gateCode').focus(); } catch (e) {} }, 50);
+}
+async function submitGate() {
+  const code = $('#gateCode').value.replace(/\s+/g, '');
+  const msg = $('#gateMsg'), btn = $('#gateGo');
+  if (!code) { msg.className = 'gate-msg warn'; msg.textContent = 'יש להזין את קוד הכניסה'; return; }
+  btn.disabled = true; msg.className = 'gate-msg'; msg.textContent = 'בודק…';
+  try {
+    const ok = await rpc(CONFIG.codeRpc, { p_code: code });
+    if (ok === true) {
+      accessSet(code);
+      $('#gate').hidden = true;
+      document.body.classList.remove('gated');
+      const next = gateAfter; gateAfter = null;
+      if (next) next();
+    } else {
+      msg.className = 'gate-msg err'; msg.textContent = 'הקוד שגוי. בדוק את הקוד של היום מול צוות המרכז.';
+    }
+  } catch (e) {
+    msg.className = 'gate-msg err';
+    msg.textContent = (e.status === 404 || e.code === 'PGRST202')
+      ? 'בדיקת הקוד עדיין לא הותקנה בשרת (קובץ ה-SQL, חלק 1).'
+      : 'אין חיבור לשרת – בדוק את החיבור לאינטרנט ונסה שוב.';
+  } finally { btn.disabled = false; }
+}
+
+
+/* ---------- backup ---------- */
+function backupObject() {
+  const { cache, tab, ...data } = state;
+  return { app: 'actor-questionnaire', version: APP_VERSION, exportedAt: new Date().toISOString(), data };
+}
+function backupFileName() {
+  const clean = s => (s || '').trim().replace(/[\\/:*?"<>|\s]+/g, '_').slice(0, 40);
+  return `גיבוי_שאלון_שחקן_${clean(state.actor) || 'ללא_שם'}_${(state.center.date || todayISO())}.json`;
+}
+function backupBlob() { return new Blob([JSON.stringify(backupObject(), null, 2)], { type: 'application/json' }); }
+function downloadBackup() {
+  const url = URL.createObjectURL(backupBlob());
+  const a = document.createElement('a');
+  a.href = url; a.download = backupFileName();
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+  toast('קובץ הגיבוי נשמר', 'ok');
+}
+async function shareBackup() {
+  try {
+    const file = new File([backupBlob()], backupFileName(), { type: 'application/json' });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({ files: [file], title: 'גיבוי שאלון שחקן' });
+    } else { downloadBackup(); }
+  } catch (e) { if (e.name !== 'AbortError') downloadBackup(); }
+}
+function importBackup(file) {
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const obj = JSON.parse(r.result);
+      if (!obj || obj.app !== 'actor-questionnaire' || !obj.data) throw new Error('bad');
+      const d = obj.data;
+      const who = [d.actor, d.center && d.center.name].filter(Boolean).join(' · ');
+      if (!confirm(`לטעון את הגיבוי${who ? ` (${who})` : ''}?\nהנתונים הנוכחיים במכשיר יוחלפו.`)) return;
+      const cache = state.cache;
+      state = normalize(Object.assign({}, d, { cache, tab: 'details' }));
+      save(true); buildAll();
+      if (SERVER && !state.manual) loadCenters();
+      toast('הגיבוי נטען', 'ok');
+    } catch (e) { toast('הקובץ אינו קובץ גיבוי תקין של השאלון', 'err', 4000); }
+  };
+  r.readAsText(file);
+}
+function newForm() {
+  const pending = EXERCISES.filter(ex => ['partial', 'complete'].includes(status(ex)));
+  const warn = pending.length ? `\n\nשים לב: ${pending.length} תרגילים עדיין לא הועלו לשרת. מומלץ להעלות או לשמור קובץ גיבוי לפני כן.` : '';
+  if (!confirm('לפתוח טופס חדש? כל התשובות הנוכחיות יימחקו מהמכשיר (שם השחקן יישמר).' + warn)) return;
+  state = blankState({ actor: state.actor, cache: state.cache });
+  save(true); buildAll();
+  if (SERVER) loadCenters();
+}
+
+/* ---------- events ---------- */
+function touch(exKey) {
+  if (exKey) state.sheets[exKey].updatedAt = new Date().toISOString();
+  save(); refreshUI();
+}
+
+document.addEventListener('click', e => {
+  const go = e.target.closest('[data-go]');
+  if (go) { goTab(go.getAttribute('data-go')); return; }
+  const sb = e.target.closest('.scale button');
+  if (sb) {
+    const { ex, kind, id } = sb.dataset, v = +sb.dataset.v, s = state.sheets[ex];
+    if (kind === 'overall') s.overall = s.overall === v ? null : v;
+    else { if (s.ratings[id] === v) delete s.ratings[id]; else s.ratings[id] = v; }
+    paintScale(ex, kind, id); touch(ex); return;
+  }
+  const btn = e.target.closest('button');
+  switch (btn && btn.id) {
+    case 'btnPrev': { const i = TAB_ORDER.indexOf(state.tab); if (i > 0) goTab(TAB_ORDER[i - 1]); break; }
+    case 'btnNext': { const i = TAB_ORDER.indexOf(state.tab); goTab(i < TAB_ORDER.length - 1 ? TAB_ORDER[i + 1] : 'details'); break; }
+    case 'btnUpload': uploadAll(); break;
+    case 'gateGo': submitGate(); break;
+    case 'btnBackup': downloadBackup(); break;
+    case 'btnShare': shareBackup(); break;
+    case 'btnImport': $('#fileImport').value = ''; $('#fileImport').click(); break;
+    case 'btnNew': newForm(); break;
+    case 'btnRefresh': loadCenters(); break;
+    case 'btnManualMode':
+      state.manual = true; save(); renderCenter(); renderAllCandidates(); renderServerStatus(); refreshUI(); break;
+    case 'btnServerMode':
+      state.manual = false;
+      if (state.center.id === '') { state.center.name = ''; }
+      save(); renderCenter(); renderAllCandidates(); renderServerStatus(); refreshUI(); loadCenters(); break;
+  }
+});
+
+document.addEventListener('input', e => {
+  const el = e.target;
+  if (el.id === 'actorName') { state.actor = el.value; touch(); return; }
+  if (el.id === 'centerNameInp') { state.center.name = el.value; state.center.id = ''; touch(); return; }
+  if (el.id === 'centerDate') { state.center.date = el.value; touch(); return; }
+  const exKey = el.dataset && el.dataset.ex; if (!exKey) return;
+  const s = state.sheets[exKey];
+  switch (el.dataset.kind) {
+    case 'answer': s.answers[el.dataset.id] = el.value; autoGrow(el); break;
+    case 'character': s.character = el.value; break;
+    case 'candidateText': s.candidateName = el.value; s.candidateId = ''; updateNameList(); break;
+    default: return;
+  }
+  touch(exKey);
+});
+
+document.addEventListener('change', e => {
+  const el = e.target;
+  if (el.id === 'centerSelect') {
+    const newId = el.value;
+    if (newId === state.center.id) return;
+    const chosen = EXERCISES.filter(ex => S(ex).candidateId || S(ex).candidateName);
+    if (chosen.length && !confirm('החלפת מרכז ההכשרה תנקה את המועמדים שנבחרו בתרגילים. להמשיך?')) { el.value = state.center.id; return; }
+    chosen.forEach(ex => { S(ex).candidateId = ''; S(ex).candidateName = ''; });
+    const c = (state.cache.centers || []).find(x => x.id === newId);
+    state.center = { id: newId, name: c ? c.name : '', date: newId ? todayISO() : '' };
+    $('#centerDate').value = state.center.date || '';
+    touch(); renderAllCandidates();
+    if (newId) loadCandidates(newId);
+    return;
+  }
+  if (el.dataset && el.dataset.kind === 'candidate') {
+    const s = state.sheets[el.dataset.ex];
+    s.candidateId = el.value;
+    s.candidateName = el.value ? el.options[el.selectedIndex].text : '';
+    touch(el.dataset.ex);
+  }
+});
+
+$('#gateCode').addEventListener('keydown', e => { if (e.key === 'Enter') submitGate(); });
+$('#fileImport').addEventListener('change', e => { const f = e.target.files && e.target.files[0]; if (f) importBackup(f); });
+window.addEventListener('resize', () => $$(`section[data-tab="${state.tab}"] textarea`).forEach(autoGrow));
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') save(true); });
+
+/* ---------- start ---------- */
+if (!state.center.date && !SERVER) state.center.date = todayISO();
+buildAll();
+save(true);
+$('#gateIco').innerHTML = icon('masks', 38, 1.5);
+if (needGate()) showGate('');
+if (SERVER && !state.manual) loadCenters();
+else if (SERVER) { srvState = { kind: 'ok', msg: '' }; renderServerStatus(); }
+
+})();
+</script>
+<!-- הגדרת Supabase (טבלת actor_evaluations, קוד הכניסה היומי והמחיקה האוטומטית):
+     הקובץ SUPABASE-SETUP-v1.3.txt בתיקיית Sales Workshop. -->
+</body>
+</html>
